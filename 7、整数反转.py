@@ -2,7 +2,7 @@
 """给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。"""
 
 #我的做法1
-class Solution:
+class Solution1:
     def reverse(self, x: int) -> int:
         lis=str(x)
         lis=list(lis)
@@ -21,7 +21,7 @@ class Solution:
 
 
 #我的做法2
-class Solution:
+class Solution2:
     def reverse(self, x: int) -> int:
         flag=0
         y=0
@@ -34,3 +34,6 @@ class Solution:
             if (-2 ** 31 < y < 2 ** 31 - 1) is False:
                 return 0
         return 0-y if flag==1 else y
+
+a=Solution2()
+print(a.reverse(121))
