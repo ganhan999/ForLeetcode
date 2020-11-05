@@ -1,14 +1,22 @@
+from typing import List
+
 class Solution:
-    def isValid(self, s: str) -> bool:
-        dic={')':'(',']':'[','}':'{'}
-        stack=[]
-        for ele in s:
-            if stack and ele in dic:
-                if dic[ele]==stack[-1]:
-                    stack.pop()
-                else:return False
-            else:
-                stack.append(ele)
-        return not stack
+    def removeDuplicates(self, nums: List[int]) -> int:
+        i=0
+        print(len(nums))
+        if len(nums)==0 or len(nums)==1:
+            return len(nums)
+        else:
+            while(i<len(nums)):
+                if nums[i]==nums[i+1]:
+                    nums.pop(i)
+                    print(nums)
+                    print(len(nums))
+                else:
+                    print("i:",i)
+                    i=i+1
+                if i>=len(nums)-1:
+                    return len(nums)
+
 a=Solution()
-print(a.isValid("()[]{}"))
+print(a.removeDuplicates([1]))
