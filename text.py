@@ -1,22 +1,19 @@
 from typing import List
 
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        lens=len(nums)
         i=0
-        print(len(nums))
-        if len(nums)==0 or len(nums)==1:
-            return len(nums)
-        else:
-            while(i<len(nums)):
-                if nums[i]==nums[i+1]:
-                    nums.pop(i)
-                    print(nums)
-                    print(len(nums))
-                else:
-                    print("i:",i)
-                    i=i+1
-                if i>=len(nums)-1:
-                    return len(nums)
-
+        if lens==0:
+            return 0
+        while i<=lens-1:
+            if val in nums:
+                inde=nums.index(val)
+                print(inde)
+                nums.pop(inde)
+                print()
+            else:
+                i=i+1
+        return len(nums)
 a=Solution()
-print(a.removeDuplicates([1]))
+print(a.removeElement([1],1))
