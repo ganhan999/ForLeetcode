@@ -1,19 +1,11 @@
 from typing import List
 
 class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
-        lens=len(nums)
-        i=0
-        if lens==0:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if not needle:
             return 0
-        while i<=lens-1:
-            if val in nums:
-                inde=nums.index(val)
-                print(inde)
-                nums.pop(inde)
-                print()
-            else:
-                i=i+1
-        return len(nums)
+        if needle in haystack:
+            print(haystack.find(needle))
+            return haystack.find(needle)
 a=Solution()
-print(a.removeElement([1],1))
+print(a.strStr("hello","ll"))
