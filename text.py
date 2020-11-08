@@ -1,11 +1,12 @@
 from typing import List
 
 class Solution:
-    def strStr(self, haystack: str, needle: str) -> int:
-        if not needle:
-            return 0
-        if needle in haystack:
-            print(haystack.find(needle))
-            return haystack.find(needle)
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        if target in nums:
+            return nums.index(target)
+        else:
+            nums.append(target)
+            nums.sort(reverse=False)
+            return nums.index(target)
 a=Solution()
-print(a.strStr("hello","ll"))
+print(a.searchInsert([1,3,5,6],7))
