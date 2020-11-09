@@ -37,7 +37,7 @@ countAndSay(4) = 读 "21" = 一 个 2 + 一 个 1 = "12" + "11" = "1211"
 
 """
 思路分析：
-利用python中index函数便可以直接找到，子字符串的初始位置。
+利用递归的思想，如果当后一个元素不等于前一个元素停止计数，以此类推。主要是递归的思想要掌握！
 """
 #我的做法
 class Solution:
@@ -51,12 +51,11 @@ class Solution:
             if i==0:
                 count=1
             elif pre[i]!=pre[i-1]:
-                tmp=str(count)+pre[i-1]
+                tmp=str(count)+pre[i-1]#如果当后一个元素不等于前一个元素停止计数，以此类推。
                 res += tmp
                 count=1
             elif  pre[i]==pre[i-1]:
                 count=count+1
-
             if i==len(pre)-1:#为什么这里是if而不是elif，因为最后一个字符的时候也有可能满足上一个if。
                             #这里是为了如果是最后一个字符的时候就可以直接截断了
                 tmp = str(count) + pre[i]
@@ -98,7 +97,6 @@ class Solution:
                 cur += str(end - start) + pre[start]
                 # 这里更新 start，开始记录下一个元素
                 start = end
-
         return cur
 
 
