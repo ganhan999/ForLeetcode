@@ -1,27 +1,30 @@
 from typing import List
 class Solution:
-    def countAndSay(self, n: int) -> str:
-        pre = ''
-        cur = '1'
-        # 从第 2 项开始
-        for _ in range(1, n):
-            # 这里注意要将 cur 赋值给 pre # 因为当前项，就是下一项的前一项。有点绕，尝试理解下
-            pre = cur
-            # 这里 cur 初始化为空，重新拼接
-            cur = ''
-            # 定义双指针 start，end
-            start = 0
-            end = 0
-            # 开始遍历前一项，开始描述
-            while end < len(pre):
-                # 统计重复元素的次数，出现不同元素时，停止
-                # 记录出现的次数，
-                while end < len(pre) and pre[start] == pre[end]:
-                    end += 1
-                # 元素出现次数与元素进行拼接
-                cur += str(end - start) + pre[start]
-                # 这里更新 start，开始记录下一个元素
-                start = end
-        return cur
+    def maxSubArray(self, nums: List[int]) -> int:
+        n = len(nums)
+        # 递归终止条件
+        if n == 1:
+            return nums[0]
+        else:
+            # 递归计算左半边最大子序和
+            max_left = self.maxSubArray(nums[0:len(nums) // 2])
+            # 递归计算右半边最大子序和
+            max_right = self.maxSubArray(nums[len(nums) // 2:len(nums)])
+        # 计算中间的最大子序和，从右到左计算左边的最大子序和，从左到右计算右边的最大子序和，再相加
+        # 以下条件是只有n>1才会发生的
+        a=nums
+        max_l = nums[len(nums) // 2 - 1]
+        tmp = 0
+        for i in range(len(nums) // 2 - 1, -1, -1):
+            tmp += nums[i]
+            max_l = max(tmp, max_l)
+        max_r = nums[len(nums) // 2]
+        tmp = 0
+        for i in range(len(nums) // 2, len(nums)):
+            tmp += nums[i]
+            max_r = max(tmp, max_r)
+        # 返回三个中的最大值
+        return max(max_right, max_left, max_l + max_r)
+
 a=Solution()
-print(a.countAndSay(4))
+print(a.maxSubArray([-2,3,-1,1,-3]))

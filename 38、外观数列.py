@@ -47,6 +47,7 @@ class Solution:
         pre=self.countAndSay(n-1)#递归的思想，要把递归写在一系列操作前面，最后写return
         res=""#从零开始
         count=1
+        #以下条件是只有n>1才会发生的
         for i in range(len(pre)):
             if i==0:
                 count=1
