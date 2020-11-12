@@ -1,24 +1,20 @@
-# class Solution:
-#     def lengthOfLastWord(self, s: str) -> int:
+# from typing import List
 #
-#         if " " in s:
-#             if set(s)!={" "}:
-#                 inde=s.rfind(" ")
-#                 return len(s)-inde-1
+#
+# class Solution:
+#     def plusOne(self, digits: List[int]) -> List[int]:
+#         for i in range(len(digits)-1,-1,-1):
+#             if digits[i]!=9:
+#                 digits[i] += 1
+#                 return digits
 #             else:
-#                 return 0
-#         else:
-#             return len(s)
-class Solution:
-    def lengthOfLastWord(self, s: str) -> int:
-        s=s.strip(" ")
-        if " " in s:
-            if set(s)!={" "}:
-                inde=s.rfind(" ")
-                return len(s)-inde-1
-            else:
-                return 0
-        else:
-            return len(s)
-a=Solution()
-print(a.lengthOfLastWord("a c"))
+#                 digits[i] =0
+#         digits.insert(0,1)
+#         return digits
+#
+#
+# a=Solution()
+# print(a.plusOne([0,9,9]))
+
+a=[1,2,3]
+print('-'.join(a))
