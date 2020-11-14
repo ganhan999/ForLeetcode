@@ -1,16 +1,17 @@
 from typing import List
 
 class Solution:
-    def addBinary(self, a: str, b: str) -> str:
-        r, p = '', 0
-        d = len(b) - len(a)
-        a = '0' * d + a
-        b = '0' * -d + b
-        for i, j in zip(a[::-1], b[::-1]):
-            s = int(i) + int(j) + p
-            r = str(s % 2) + r
-            p = s // 2
-        return '1' + r if p else r
+    def mySqrt(self, x: int) -> int:
+        low=0
+        high=x
+        while low<=high:
+            mid=(low+high)//2
+            if mid**2<=x:
+                ans=mid
+                low=mid+1
+            else:
+                high=mid-1
+        return ans
 a=Solution()
 
-print(a.addBinary("1110","111"))
+print(a.mySqrt("1110","111"))
