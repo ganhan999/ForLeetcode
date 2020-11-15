@@ -1,17 +1,20 @@
 from typing import List
 
 class Solution:
-    def mySqrt(self, x: int) -> int:
-        low=0
-        high=x
-        while low<=high:
-            mid=(low+high)//2
-            if mid**2<=x:
-                ans=mid
-                low=mid+1
-            else:
-                high=mid-1
-        return ans
+    def climbStairs(self, n: int) -> int:
+        dp = {}
+        dp[1] = 1
+        dp[2] = 2
+        for i in range(3,n+1):
+            dp[i] = dp[i-1] + dp[i-2]
+        return dp[n]
+
+
+
+
+
+
+
 a=Solution()
 
-print(a.mySqrt("1110","111"))
+print(a.climbStairs(11))
