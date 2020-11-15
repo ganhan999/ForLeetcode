@@ -36,6 +36,8 @@ class Solution:
         elif n==2:
             return 2
         else:
+            ans=self.climbStairs(n-1)+self.climbStairs(n-2)#记得加上对象self
+        return ans
 
 
 #大神做法1
