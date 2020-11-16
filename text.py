@@ -1,13 +1,20 @@
 from typing import List
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
+#
+# 示例 1:
+# 输入: 1->1->2
+# 输出: 1->2
+
+# 示例 2:
+# 输入: 1->1->2->3->3
+# 输出: 1->2->3
 class Solution:
-    def climbStairs(self, n: int) -> int:
-        dp = {}
-        dp[1] = 1
-        dp[2] = 2
-        for i in range(3,n+1):
-            dp[i] = dp[i-1] + dp[i-2]
-        return dp[n]
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
 
 
 
