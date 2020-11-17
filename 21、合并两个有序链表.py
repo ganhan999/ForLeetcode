@@ -21,7 +21,7 @@ class ListNode:
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         newlist=ListNode(0)#起始值为0，没有任何意义，下一个next才是开始。
-        yajiedian = newlist#哑巴节点
+        yajiedian = newlist#哑巴节点，初始节点！
         while l1 and l2 :
             if l1.val<=l2.val:
                 newlist.next=l1#可以使用这样更快的方式运行  node.next,l1 = l1,l1.next
