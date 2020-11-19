@@ -1,20 +1,30 @@
 from typing import List
+from collections import deque
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-#
-#
-# class Solution:
-#     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
-#
-#
-#
-# a=Solution()
-#
-# a.merge([1,2,5,0,0,0,0],3,[4,5,6],3)
 
-l=[]
-print(not l)
+class Solution:
+    def isSymmetric(self, root):
+        return self.isMirror(root, root)
+
+    def isMirror(self, p1, p2):
+        if not p1 and not p2:
+            return True
+        if not p1 or not p2:  # 左右子树都空的情况上面已经排除
+            return False
+        return p1.val == p2.val and self.isMirror(p1.left, p2.right) and self.isMirror(p1.right, p2.left)
+
+
+
+
+
+name=deque(["jean","li","na"])
+name.append("yang")
+name.append("chun")
+a= name.popleft()
+b= name.popleft()
+print(b)
