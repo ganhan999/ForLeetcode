@@ -1,5 +1,6 @@
 from typing import List
 from collections import deque
+import math
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -19,12 +20,4 @@ class Solution:
         return p1.val == p2.val and self.isMirror(p1.left, p2.right) and self.isMirror(p1.right, p2.left)
 
 
-
-
-
-name=deque(["jean","li","na"])
-name.append("yang")
-name.append("chun")
-a= name.popleft()
-b= name.popleft()
-print(b)
+print(math.log(10, 2))
