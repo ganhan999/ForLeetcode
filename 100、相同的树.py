@@ -70,7 +70,7 @@ class Solution:
         if not tree:
             res.append('')
             return
-        res.append(tree.val)
+        res.append(tree.val)#先序遍历
         self.DFS(tree.left, res)
         self.DFS(tree.right, res)
 
