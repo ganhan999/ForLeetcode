@@ -27,7 +27,7 @@ class Solution:
     def maxDepth(self, root: TreeNode) -> int:
         if root is None:
             return 0
-        ans = 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))#这里就相当于调用了系统栈，就行深度优先遍历
+        ans = 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))#这里就相当于调用了系统栈，进行深度优先遍历
         return ans
 
 

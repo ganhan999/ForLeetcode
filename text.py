@@ -2,14 +2,14 @@ from typing import List
 from collections import deque
 # import math
 
+
 class Solution:
-    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
-        def dfs(left, right):
-            if left > right:
-                return None
-            mid = (left+right) // 2
-            root = TreeNode(nums[mid])
-            root.left = dfs(left, mid-1)
-            root.right = dfs(mid+1, right)
-            return root
-        return dfs(0, len(nums)-1)
+    def isBalanced(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+        return abs(self.height(root.right)-self.height(root.left))<2 and self.isBalanced(root.left) and self.isBalanced(root.right)
+	# 求高度
+    def height(self, node):
+        if not node:
+            return 0
+        return 1+max(self.height(node.right),self.height(node.left))
