@@ -1,15 +1,33 @@
 from typing import List
 from collections import deque
 # import math
+'''
+     [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+'''
 
 
 class Solution:
-    def isBalanced(self, root: TreeNode) -> bool:
-        if not root:
-            return True
-        return abs(self.height(root.right)-self.height(root.left))<2 and self.isBalanced(root.left) and self.isBalanced(root.right)
-	# 求高度
-    def height(self, node):
-        if not node:
-            return 0
-        return 1+max(self.height(node.right),self.height(node.left))
+    def getRow(self, rowIndex: int) -> List[int]:
+        if rowIndex == 0:
+            return [1]
+        if rowIndex == 1:
+            return [1, 1]
+        li = [[1], [1, 1]]
+        i = 3
+        while True:
+            new = []
+            for j in range(i - 2):
+                new.append(li[i - 2][j] + li[i - 2][j + 1])
+            new.insert(0, 1)
+            new.append(1)
+            li.append(new)
+            if rowIndex == i - 1:
+                return li[i - 1]
+            i = i + 1
+
+print(Solution().getRow(3))
+
