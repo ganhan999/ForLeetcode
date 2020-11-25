@@ -1,33 +1,26 @@
 from typing import List
 from collections import deque
 # import math
-'''
-     [1],
-    [1,1],
-   [1,2,1],
-  [1,3,3,1],
- [1,4,6,4,1]
-'''
 
 
-class Solution:
-    def getRow(self, rowIndex: int) -> List[int]:
-        if rowIndex == 0:
-            return [1]
-        if rowIndex == 1:
-            return [1, 1]
-        li = [[1], [1, 1]]
-        i = 3
-        while True:
-            new = []
-            for j in range(i - 2):
-                new.append(li[i - 2][j] + li[i - 2][j + 1])
-            new.insert(0, 1)
-            new.append(1)
-            li.append(new)
-            if rowIndex == i - 1:
-                return li[i - 1]
-            i = i + 1
 
-print(Solution().getRow(3))
+class Solution(object):
+    def maxProfit(self, prices):
+        if not prices:
+            return 0
+        n = len(prices)
+        min_val =prices[0]
+        res = 0
+        for i in range(n):
+            # 遍历数组，不断更新最小价格
+            # 再计算出max(当前值-最小值)
+            if min_val>=prices[i]:
+                min_val = prices[i]
+            tmp = prices[i]-min_val
+            if tmp>res:
+                res = tmp
+        return res
+
+
+print(Solution(). maxProfit([7,1,5,3,6,4]))
 
