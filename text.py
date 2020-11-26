@@ -4,23 +4,13 @@ from collections import deque
 
 
 
-class Solution(object):
-    def maxProfit(self, prices):
-        if not prices:
-            return 0
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        result = 0
         n = len(prices)
-        min_val =prices[0]
-        res = 0
-        for i in range(n):
-            # 遍历数组，不断更新最小价格
-            # 再计算出max(当前值-最小值)
-            if min_val>=prices[i]:
-                min_val = prices[i]
-            tmp = prices[i]-min_val
-            if tmp>res:
-                res = tmp
-        return res
-
-
+        if n == 0: return result
+        for i in range(n-1):
+            result+=max(prices[i+1]-prices[i],0)
+        return result
 print(Solution(). maxProfit([7,1,5,3,6,4]))
 
