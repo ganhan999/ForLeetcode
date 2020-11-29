@@ -3,9 +3,18 @@ from collections import deque
 # import math
 import re
 
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
-from functools import reduce
-class Solution:
-    def singleNumber(nums):
-        return reduce(lambda x, y: x ^ y, nums)
+head=ListNode(1)
+def nums(head):
+        if head.flag==1:
+            return
+        else:
+            head.flag=0
 
+
+nums(head)
