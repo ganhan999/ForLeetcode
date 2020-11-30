@@ -95,27 +95,4 @@ class MinStack:
 
 
 
-#大神做法2
-
-"""
-快慢指针法：
-枚举时添加一个慢一拍的指针，如果有环最终两个指针会相遇，可能会很慢啊
-"""
-class Solution:
-    def singleNumber(nums):
-        return sum(set(nums))*2-sum(nums)
-
-
-#大神做法3
-"""
-链表中最多10000个节点，超过10000就是有环
-"""
-class Solution:
-    def hasCycle(self, head: ListNode) -> bool:
-        # 3. 计数 10000
-        count = 0
-        while head and count <= 10000:
-            count += 1
-            head = head.next
-        return count > 10000
 
