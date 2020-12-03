@@ -61,23 +61,3 @@ class Solution:
 
 
 
-#大神做法2
-
-"""
-双指针分别指向最左和最右元素，如果两边之和大于target，那么右指针左移，否则左指针右移。
-"""
-class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        left , right = 0 , len(numbers)-1
-        while left <= right:
-            s = numbers[left] + numbers[right]
-            if s == target:
-                return [left+1,right+1]
-            elif s < target:
-                left += 1
-            else:
-                right -= 1
-
-
-
-
