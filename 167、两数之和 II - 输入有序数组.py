@@ -21,14 +21,16 @@
 """
 #我的做法
 class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        hashmap={}
-        for i,j in enumerate(numbers):
-            hashmap[j]=i
-        for n,m in enumerate(numbers):
-            number=hashmap.get(target-m)
-            if number is not None and n!=number:
-                return[n+1,number+1]
+  def convertToTitle(self, n: int) -> str:
+      str=''
+      while n!=0:
+          n, rightnum = divmod(n, 26)
+          if rightnum==0:
+            str='Z'+str
+            n=n-1
+          else:
+            str=chr(65+rightnum-1)+str
+      return str
 #大神做法1
 
 """
