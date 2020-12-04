@@ -4,13 +4,11 @@ from collections import deque
 import codecs
 
 
-class Solution1:
-  def convertToTitle2(self, n: int) -> str:
-    eng = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    n -= 1
-    if n < 26:
-      return eng[n]
-    return self.convertToTitle2(n // 26) + eng[n % 26]
+class Solution:
+  def majorityElement(self, nums: List[int]) -> int:
+    if len(nums)==1
+    nums.sort()
+    return nums[(1+len(nums)//2)]
 
-2
-print(Solution1().convertToTitle2(26))
+
+print(Solution().majorityElement([3,2,3]))
