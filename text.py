@@ -4,11 +4,17 @@ from collections import deque
 import codecs
 
 
-class Solution(object):
-  def titleToNumber(self, s):
-    ans = 0
-    for x in s:
-      ans *= 26
-      ans += ord(x) - ord('A') + 1
-    return ans
+def trailingZeroes(self, n: int) -> int:
+    n_factorial = 1
+    for i in range(2, n + 1):
+      n_factorial *= i
+    zero_count = 0
+    while n_factorial % 10 == 0:
+      zero_count += 1
+      n_factorial //= 10
+
+    return zero_count
+
+
+
 print(Solution().titleToNumber("ZZY"))
