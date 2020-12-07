@@ -4,17 +4,12 @@ from collections import deque
 import codecs
 
 
-def trailingZeroes(self, n: int) -> int:
-    n_factorial = 1
-    for i in range(2, n + 1):
-      n_factorial *= i
-    zero_count = 0
-    while n_factorial % 10 == 0:
-      zero_count += 1
-      n_factorial //= 10
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        a=list(bin(n))[2:]
+        num=32-len(a)
+        a.reverse()
+        b="".join(a)+'0'*num
+        return int(b,base=2)
 
-    return zero_count
-
-
-
-print(Solution().titleToNumber("ZZY"))
+print(Solution().reverseBits(43261596))
