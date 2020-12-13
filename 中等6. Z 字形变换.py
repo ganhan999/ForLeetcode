@@ -35,7 +35,8 @@ class Solution:
         i, flag = 0, -1
         for c in s:
             res[i] += c
-            if i == 0 or i == numRows - 1: flag = -flag
+            if i == 0 or i == numRows - 1:
+                flag = -flag
             i += flag
         return "".join(res)
 
