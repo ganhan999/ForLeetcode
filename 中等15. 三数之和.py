@@ -21,7 +21,6 @@
 #我的做法
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-
         n = len(nums)
         res = []
         if (not nums or n < 3):
