@@ -6,17 +6,25 @@ from collections import deque
 
 
 class Solution:
-            def letterCombinations(self, digits: str) -> List[str]:
-                if not digits: return []
-                phone = ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz']
-                queue = ['']  # 初始化队列
-                for digit in digits:
-                    for _ in range(len(queue)):
-                        tmp = queue.pop(0)
-                        for letter in phone[ord(digit) - 50]:  # 这里我们不使用 int() 转换字符串，使用ASCII码
-                            queue.append(tmp + letter)
-                return queue
+    def generateParenthesis(self, n: int) -> List[str]:
+        ans = []
+        def backtrack(S, left, right):
+            if len(S) == 2 * n:
+                ans.append(''.join(S))
+                return
+            if left < n:
+                S.append('(')
+                backtrack(S, left+1, right)
+                S.pop()
+            if right < left:
+                S.append(')')
+                backtrack(S, left, right+1)
+                S.pop()
+
+        backtrack([], 0, 0)
+        return ans
 
 
 
-print(Solution().letterCombinations("234"))
+
+print(Solution().generateParenthesis(3))
