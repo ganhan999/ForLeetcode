@@ -4,46 +4,22 @@ from collections import deque
 
 
 class Solution:
-    def divide(self, dividend: int, divisor: int) -> int:
-        def recursion(dividend, divisor):
-            if dividend < divisor:
-                return 0
-            if dividend == divisor:
-                return 1
-            nn = 1
-            dd = divisor
-            while True:
-                if dividend > dd:
-                    n = nn
-                    nn += nn
-                    d = dd
-                    dd += dd
-                elif dividend == dd:
-                    return nn
-                else:
-                    return n + recursion(dividend - d, divisor)
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
 
-        if dividend >= 0:
-            if divisor > 0:
-                positive = True
-            else:
-                positive = False
-        else:
-            if divisor > 0:
-                positive = False
-            else:
-                positive = True
-        ans = recursion(abs(dividend), abs(divisor))
-        if positive:
-            if ans > 2 ** 31 - 1:
-                return 2 ** 31 - 1
-            else:
-                return ans
-        else:
-            return -ans
+        if len(nums) < 2: return
+        for i in range(len(nums) - 2, -1, -1):
+            if nums[i] < nums[i + 1]:
+                for j in range(len(nums) - 1, i, -1):
+                    if nums[j] > nums[i]:
+                        nums[i], nums[j] = nums[j], nums[i]
+                        break
+                nums[i + 1:] = sorted(nums[i + 1:])
+                print(nums)
+                return
+        return nums.sort()
 
 
-
-
-
-print(Solution().divide(20,3))
+print(Solution().nextPermutation([1,2,3,4,6,5]))
