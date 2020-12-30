@@ -4,48 +4,19 @@ from collections import deque
 
 
 class Solution:
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
-        size = len(nums)
-        if size == 0:
-            return [-1, -1]
-        first_position = self.__find_first_position(nums, size, target)
-        if first_position == -1:
-            return [-1, -1]
-        last_position = self.__find_last_position(nums, size, target)
-        return [first_position, last_position]
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row = [{} for _ in range(9)]
+        col = [{} for _ in range(9)]
+        grid = [[{} for _ in range(3)] for _ in range(3)]
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] != '.':
+                    tmp = int(board[i][j])
+                    row[i][tmp] = row[i].get(tmp, 0) + 1#如果已经存在该数字，那么就继续加一，没有就从0开始
+                    col[j][tmp] = col[j].get(tmp, 0) + 1
+                    grid[i//3][j//3][tmp] = grid[i//3][j//3].get(tmp, 0) + 1
+                    if row[i].get(tmp) > 1 or col[j].get(tmp) > 1 or grid[i//3][j//3].get(tmp) > 1:#如果对应的value大于1说明，存在两次，直接退出循环
+                        return False
+        return True
 
-    def __find_first_position(self, nums, size, target):
-        left = 0
-        right = size - 1
-        while left < right:
-            mid = (left + right) // 2
-            if nums[mid] < target:
-                left = mid + 1
-            elif nums[mid] == target:
-                right = mid
-            else:
-                # nums[mid] > target
-                right = mid - 1
-
-        if nums[left] == target:
-            return left
-        else:
-            return -1
-
-    def __find_last_position(self, nums, size, target):
-        left = 0
-        right = size - 1
-        while left < right:
-            mid = (left + right + 1) // 2
-            if nums[mid] > target:
-                right = mid - 1
-            elif nums[mid] == target:
-                left = mid
-            else:
-                # nums[mid] < target
-                left = mid + 1
-        # 由于能走到这里，说明在数组中一定找得到目标元素，因此这里不用再做一次判断
-        return left
-
-
-print(Solution().searchRange([5,7,7,8,8,10],8))
+print(Solution().isValidSudoku([["5","3","3",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]))
