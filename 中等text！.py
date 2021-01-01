@@ -3,26 +3,34 @@ from collections import deque
 # import math
 
 
+from typing import List
+
+
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        def dfs(candidates, begin, size, path, res, target):
-            if target < 0:
-                return
-            if target == 0:
-                res.append(path)
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        def dfs(begin, path, residue):
+            if residue == 0:
+                res.append(path[:])
                 return
 
             for index in range(begin, size):
-                dfs(candidates, index, size, path + [candidates[index]], res, target - candidates[index])
+                if candidates[index] > residue:
+                    break
+
+                if index > begin and candidates[index - 1] == candidates[index]:
+                    continue
+
+                dfs(index+1 ,  path + [candidates[index]], residue - candidates[index])#这里index+1是为了每个元素只出现一次
 
         size = len(candidates)
         if size == 0:
             return []
         path = []
+        candidates.sort()
         res = []
-        dfs(candidates, 0, size, path, res, target)
+        dfs(0, path, target)
         return res
 
 
 
-print(Solution().combinationSum([2,3,6,7],7))
+print(Solution().combinationSum2([10,1,2,7,6,1,5],8))

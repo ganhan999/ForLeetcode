@@ -88,7 +88,7 @@ class Solution:
                 if residue < 0:#在循环内判断是否要剪枝
                     break
 
-                dfs(candidates, index, size, path + [candidates[index]], res, residue)
+                dfs(candidates, index, size, path + [candidates[index]], res, residue)#可不可以在搜索的时候就去重呢？答案是可以的。遇到这一类相同元素不计算顺序的问题，我们在搜索的时候就需要 按某种顺序搜索。具体的做法是：每一次搜索的时候设置 下一轮搜索的起点 begin，即：从每一层的第 22 个结点开始，都不能再搜索产生同一层结点已经使用过的 candidate 里的元素。
 
         size = len(candidates)
         if size == 0:
