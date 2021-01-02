@@ -7,30 +7,40 @@ from typing import List
 
 
 class Solution:
-    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        def dfs(begin, path, residue):
-            if residue == 0:
-                res.append(path[:])
-                return
+    def multiply(self, num1: str, num2: str) -> str:
+        if num1 == "0" or num2 == "0":
+            return "0"
 
-            for index in range(begin, size):
-                if candidates[index] > residue:
-                    break
+        ans = "0"
+        m, n = len(num1), len(num2)
+        for i in range(n - 1, -1, -1):
+            add = 0
+            y = int(num2[i])
+            curr = ["0"] * (n - i - 1)
+            for j in range(m - 1, -1, -1):
+                product = int(num1[j]) * y + add
+                curr.append(str(product % 10))
+                add = product // 10
+            if add > 0:
+                curr.append(str(add))
+            curr = "".join(curr[::-1])
+            ans = self.addStrings(ans, curr)
 
-                if index > begin and candidates[index - 1] == candidates[index]:
-                    continue
+        return ans
 
-                dfs(index+1 ,  path + [candidates[index]], residue - candidates[index])#这里index+1是为了每个元素只出现一次
+    def addStrings(self, num1: str, num2: str) -> str:
+        i, j = len(num1) - 1, len(num2) - 1
+        add = 0
+        ans = list()
+        while i >= 0 or j >= 0 or add != 0:
+            x = int(num1[i]) if i >= 0 else 0
+            y = int(num2[j]) if j >= 0 else 0
+            result = x + y + add
+            ans.append(str(result % 10))
+            add = result // 10
+            i -= 1
+            j -= 1
+        return "".join(ans[::-1])
 
-        size = len(candidates)
-        if size == 0:
-            return []
-        path = []
-        candidates.sort()
-        res = []
-        dfs(0, path, target)
-        return res
 
-
-
-print(Solution().combinationSum2([10,1,2,7,6,1,5],8))
+print(Solution().multiply("1234","567"))
