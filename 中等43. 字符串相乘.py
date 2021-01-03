@@ -84,7 +84,7 @@ class Solution:
         number1 = 0
         number2 = 0
 
-        for i, j in zip(num1, range(l1)):#假设num1=“123",zip(num1, range(l1))等于[(1, 0), (2, 1), (3, 2)]
+        for i, j in zip(num1, range(l1)):#假设num1=“123",zip(num1, range(l1))等于[(1, 0), (2, 1), (3, 2)]，这个方法太妙了
             number1 += int(i) * 10 ** j
 
         for i, j in zip(num2, range(l2)):
