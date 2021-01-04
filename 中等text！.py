@@ -6,23 +6,32 @@ from collections import deque
 from typing import List
 
 
-class Solution:
-    def permute(self, nums):
-        def backtrack(first=0):
-            # 所有数都填完了
-            if first == n:
-                res.append(nums[:])
-            for i in range(first, n):
-                # 动态维护数组
-                nums[first], nums[i] = nums[i], nums[first]
-                # 继续递归填下一个数
-                backtrack(first + 1)
-                # 撤销操作
-                nums[first], nums[i] = nums[i], nums[first]
+from typing import List
 
-        n = len(nums)
+
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        def dfs(nums, size, depth, path, used, res):
+            if depth == size:
+                res.append(path.copy())
+                return
+            for i in range(size):
+                if not used[i]:
+                    if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:
+                        continue
+                    used[i] = True
+                    path.append(nums[i])
+                    dfs(nums, size, depth + 1, path, used, res)
+                    used[i] = False
+                    path.pop()
+        size = len(nums)
+        if size == 0:
+            return []
+        nums.sort()
+        used = [False] * len(nums)
         res = []
-        backtrack()
+        dfs(nums, size, 0, [], used, res)
         return res
 
-print(Solution().permute([1,2,3,4]))
+
+print(Solution().permuteUnique([1,1,3,4]))
