@@ -32,7 +32,6 @@ dy = [1, 0, -1, 0]  # 注：与通常平面坐标系 记号 不同
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         if not matrix: return []
-
         x = y = 0  # 矩阵元素位置初始化
         res = []  # 初始化，存储遍历后的矩阵元素
         dx = [0, 1, 0, -1]  # 方向：右，下，左，上
@@ -51,6 +50,7 @@ class Solution:
                 di = (di + 1) % 4  # 改变方向，右下左上为一圈，防止方向坐标越界
                 x, y = x + dx[di], y + dy[di]  # 下一步坐标
         return res
+
 
 
 
