@@ -11,14 +11,19 @@ from typing import List
 
 
 class Solution:
-    def canJump(self, nums: List[int]) -> bool:
-        n, rightmost = len(nums), 1
-        for i in range(n):
-            if i <= rightmost:
-                rightmost = max(rightmost, i +1 + nums[i])
-                if rightmost >= n :
-                    return True
-        return False
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key=lambda x: x[0])
 
-print(Solution().canJump([4,2,1,0,4]))
+        merged = []
+        for interval in intervals:
+            # 如果列表为空，或者当前区间与上一区间不重合，直接添加
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
+            else:
+                # 否则的话，我们就可以与上一区间进行合并
+                merged[-1][1] = max(merged[-1][1], interval[1])
+        return merged
+
+
+print(Solution().merge([[1,3],[2,6],[8,10],[15,18]]))
 
