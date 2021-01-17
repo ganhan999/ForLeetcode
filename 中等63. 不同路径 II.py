@@ -23,6 +23,8 @@
 """
 动态规划，每一个格子都是左边或者上面格子的总和，如果遇到障碍物，那么就默认设置为0，只有另外一个方向可以走了。
 """
+
+#大神做法1
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
         #新建矩阵版

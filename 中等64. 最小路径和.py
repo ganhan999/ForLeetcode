@@ -18,6 +18,8 @@
 """
 动态规划，先把最上边和最左边的最短路径算出来，因为最上和最左只有唯一的路径可以走。
 """
+
+#大神做法1
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
         if not grid or not grid[0]:

@@ -25,6 +25,7 @@
 动态规划，每一个格子都是左边或者上面格子的总和，边界条件都是1，一维和二维数组的空间利用率不同
 """
 
+#大神做法1
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         f = [[1] * n] + [[1] + [0] * (n - 1) for _ in range(m - 1)]

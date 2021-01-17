@@ -26,6 +26,7 @@
 遍历有多少节点的同时，形成一个环，之后(n - k % n - 1)个节点就是新的尾节点，(n - k % n)是新的头节点，再遍历断环。
 """
 
+#大神做法1
 class Solution:
     def rotateRight(self, head: 'ListNode', k: 'int') -> 'ListNode':
         # base cases
