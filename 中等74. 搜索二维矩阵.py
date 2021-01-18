@@ -1,14 +1,25 @@
-import collections
-from typing import List
-from collections import deque
-# import math
+"""
+编写一个高效的算法来判断 m x n 矩阵中，是否存在一个目标值。该矩阵具有如下特性：
+每行中的整数从左到右按升序排列。
+每行的第一个整数大于前一行的最后一个整数。
 
 
-from typing import List
+示例 1：
+输入：matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
+输出：true
 
-from typing import List
+示例 2：
+输入：matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
+输出：false
 
 
+"""
+
+
+"""
+二分法
+"""
+#大神做法1
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         m = len(matrix)
@@ -29,6 +40,3 @@ class Solution:
                 else:
                     left = pivot_idx + 1
         return False
-
-
-print(Solution().searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]],3))
