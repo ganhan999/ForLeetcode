@@ -26,7 +26,7 @@ class Solution:
         ans = list()
 
         def backtrack(tmp: list, index: int) -> None:
-            if len(tmp) == k:
+            if len(tmp) == k:#回溯终止条件
                 ans.append(tmp[:])
                 return
             for i in range(index, n + 1):

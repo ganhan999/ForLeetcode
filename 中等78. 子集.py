@@ -42,12 +42,12 @@ class Solution:
 迭代
 """
 #大神做法2
-class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        res=[[]]
-        for num in nums:
-            res=res+[[num]+i for i in res]
-        return res
+    class Solution:
+        def subsets(self, nums: List[int]) -> List[List[int]]:
+            res=[[]]
+            for num in nums:
+                res=res+[[num]+i for i in res]
+            return res
 
 
 """
