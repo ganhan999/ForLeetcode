@@ -5,19 +5,23 @@ from collections import deque
 from typing import List
 import itertools
 
-
-class Solution(object):
-    def removeDuplicates(self, nums):
-        j, count = 1, 1
-        for i in range(1, len(nums)):
-            if nums[i] == nums[i - 1]:
-                count += 1
-            else:
-                count = 1
-            if count <= 2:
-                nums[j] = nums[i]
-                j += 1
-        return j
-
-
-print(Solution().removeDuplicates([1,1,1,1,2,2,2,3]))
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        length = len(nums)
+        left, right = 0, length - 1
+        while left <= right:
+            mid = left + (right - left) // 2
+            if nums[mid] == target:
+                return True
+            if nums[0] <= nums[mid]:        # mid在左半边有序数组
+                if nums[0] <= target < nums[mid]:   # 并且目标在左半边有序数组中
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:                           # mid在右半边有序数组
+                if nums[mid] < target <= nums[-1]:  # 并且目标在右半边有序数组中
+                    left = mid + 1
+                else:
+                    right = mid - 1
+        return False
+print(Solution().search([2,5,6,0,0,1,2],0))
