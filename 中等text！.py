@@ -5,12 +5,39 @@ from collections import deque
 from typing import List
 import itertools
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = [[]]
-        for i in nums:
-            res = res + [[i] + num for num in res]
-        return res
+    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+        # 迭代
+        if not head:
+            return None
+        # 找到反转段
+        cur, prev = head, None
+        while m > 1:
+            prev = cur
+            cur = cur.next
+            m, n = m-1, n-1
+        tail, con = cur, prev
+        # 三指针反转next指向
+        while n:
+            third = cur.next
+            cur.next = prev
+            prev = cur
+            cur = third
+            n -= 1
+        # 将反转段链表整体翻转
+        if con:
+            con.next = prev
+        else:
+            head = prev
+        tail.next = cur
+        return head
+
+
 
 
 print(Solution().subsets([1,2,3]))
