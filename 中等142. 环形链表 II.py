@@ -67,7 +67,7 @@ class Solution(object):
         while head:
             # 若存在，则表示存在环，返回True
             if head in seen:
-                return True
+                return head
 
             # 将节点加入seen
             seen.add(head)
