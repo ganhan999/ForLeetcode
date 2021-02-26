@@ -49,7 +49,6 @@ class Solution:
             else:
                 pre = cur
             cur = cur.next
-
         return head
 
 
