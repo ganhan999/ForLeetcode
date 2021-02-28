@@ -11,18 +11,44 @@ import itertools
 #         self.val = val
 #         self.next = next
 
-class Solution:
-    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        # 创建哈希表
-        hash_map = {}
-        # 遍历一次数组
-        for idx, n in enumerate(nums):
-            if n not in hash_map or (idx - hash_map[n]) > k:  # 情况1 & 情况2
-                hash_map[n] = idx
-            else:  # 情况3
-                return True
-        else:
-            return False
+from collections import deque
+class MyStack:
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.data = deque()
+        self.help = deque()
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        self.data.append(x)
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        while len(self.data) > 1:
+            self.help.append(self.data.popleft())
+        tmp = self.data.popleft()
+        self.help,self.data = self.data,self.help
+        return tmp
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        while len(self.data) != 1:
+            self.help.append(self.data.popleft())
+        tmp = self.data.popleft()
+        self.help.append(tmp)
+        self.help,self.data = self.data,self.help
+        return tmp
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return not bool(self.data)
+
 
 
 
