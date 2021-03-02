@@ -12,45 +12,29 @@ import itertools
 #         self.next = next
 
 from collections import deque
-class MyStack:
-    def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        self.data = deque()
-        self.help = deque()
-    def push(self, x: int) -> None:
-        """
-        Push element x onto stack.
-        """
-        self.data.append(x)
-    def pop(self) -> int:
-        """
-        Removes the element on top of the stack and returns that element.
-        """
-        while len(self.data) > 1:
-            self.help.append(self.data.popleft())
-        tmp = self.data.popleft()
-        self.help,self.data = self.data,self.help
-        return tmp
-    def top(self) -> int:
-        """
-        Get the top element.
-        """
-        while len(self.data) != 1:
-            self.help.append(self.data.popleft())
-        tmp = self.data.popleft()
-        self.help.append(tmp)
-        self.help,self.data = self.data,self.help
-        return tmp
-    def empty(self) -> bool:
-        """
-        Returns whether the stack is empty.
-        """
-        return not bool(self.data)
 
 
-
-
-
-print(Solution().containsNearbyDuplicate([1,2,3,1],3))
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        n = len(nums)
+        # 初始化双指针均指向数组头部
+        left = 0
+        right = 0
+        ans = []
+        # 开始遍历
+        while right < n:
+            # 数组有序
+            # 先限定边界，查找间隔大于 1 的部分
+            while right < n - 1 and nums[right] + 1 == nums[right + 1]:
+                right += 1
+            # 找到间隔之后，将前面连续部分按照规定格式添加到结果列表中
+            tmp = [str(nums[left])]
+            if nums[left] != nums[right]:
+                tmp.append('->')
+                tmp.append(str(nums[right]))
+            ans.append(''.join(tmp))
+            # 维护更新 right 和 left
+            right += 1
+            left = right
+        return ans
+print(Solution().summaryRanges([0,2,3,4,6,8,9]))
