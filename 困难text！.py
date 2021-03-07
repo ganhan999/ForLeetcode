@@ -13,26 +13,27 @@ import itertools
 
 from collections import deque
 
-class Solution(object):
-    def wordPattern(self, pattern, str):
-        """
-        :type pattern: str
-        :type str: str
-        :rtype: bool
-        """
-        s = str.split(' ')
-        if len(s)!= len(pattern):
-            return False
-        dic = {}
-        for i,x in enumerate(s):
-            if pattern[i] not in dic:
-                if x in dic.values():
-                    return False
-                dic[pattern[i]] = x
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        length1, length2 = len(nums1), len(nums2)
+        intersection = list()
+        index1 = index2 = 0
+        while index1 < length1 and index2 < length2:
+            num1 = nums1[index1]
+            num2 = nums2[index2]
+            if num1 == num2:
+                # 保证加入元素的唯一性
+                if not intersection :
+                    intersection.append(num1)
+                index1 += 1
+                index2 += 1
+            elif num1 < num2:
+                index1 += 1
             else:
-                if x != dic[pattern[i]]:
-                    return False
-        return True
+                index2 += 1
+        return intersection
 
 
-print(Solution().wordPattern("abba","dog cat cat dog"))
+print(Solution().intersect([1,2,2,3],[2,2]))
