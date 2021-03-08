@@ -14,26 +14,16 @@ import itertools
 from collections import deque
 
 class Solution:
-    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        nums1.sort()
-        nums2.sort()
-        length1, length2 = len(nums1), len(nums2)
-        intersection = list()
-        index1 = index2 = 0
-        while index1 < length1 and index2 < length2:
-            num1 = nums1[index1]
-            num2 = nums2[index2]
-            if num1 == num2:
-                # 保证加入元素的唯一性
-                if not intersection :
-                    intersection.append(num1)
-                index1 += 1
-                index2 += 1
-            elif num1 < num2:
-                index1 += 1
-            else:
-                index2 += 1
-        return intersection
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        hash_table_m = collections.Counter(magazine)
+        hash_table_r = collections.Counter(ransomNote)
+
+        """for i in hash_table_r:
+            if hash_table_r[i] > hash_table_m[i]:
+                return False
+        return True"""
+        return not hash_table_r - hash_table_m
 
 
-print(Solution().intersect([1,2,2,3],[2,2]))
+
+print(Solution().canConstruct("aa","aab"))
