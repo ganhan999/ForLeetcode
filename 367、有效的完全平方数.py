@@ -36,7 +36,7 @@ class Solution:
 牛顿迭代法
 
 """
-#大神做法1
+#大神做法2
 class Solution:
     def isPerfectSquare(self, num: int) -> bool:
         if num < 2:
