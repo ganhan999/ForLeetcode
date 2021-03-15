@@ -15,34 +15,20 @@ from collections import deque
 
 
 class Solution:
-    def isSubsequence(self, s: str, t: str) -> bool:
-        hashmap = {}
-        for i, c in enumerate(t):
-            if c not in hashmap:
-                hashmap[c] = [i]
-            else:
-                hashmap[c].append(i)
+    def readBinaryWatch(self, num: int) -> List[str]:
+        hours = [1, 2, 4, 8, 0, 0, 0, 0, 0, 0]
+        minutes = [0, 0, 0, 0, 1, 2, 4, 8, 16, 32]
+        res = []
+        def backtrack(num, index, hour, minute):
+            if hour > 11 or minute > 59:
+                return
+            if num == 0:
+                res.append('%d:%02d' % (hour, minute))
+                return
+            for i in range(index, 10):
+                backtrack(num - 1, i + 1, hour + hours[i], minute + minutes[i])
 
-        j = 0
-        for i in range(len(s)):
-            c = s[i]
-            if c not in hashmap:
-                return False
-            pos = self.find_left(hashmap[c], j)  # 二分搜索与c匹配的下一个索引，避免线性扫描
-            if pos >= len(hashmap[c]):#如果超过了 那么不可能匹配
-                return False
-            j = hashmap[c][pos] + 1
-        return True
+        backtrack(num, 0, 0, 0)
+        return res
 
-    def find_left(self, index, target):
-        left, right = 0, len(index) - 1
-        while left <= right:
-            mid = (left + right) // 2
-            if index[mid] < target:
-                left = mid + 1
-            else:
-                right = mid - 1
-        return left
-
-
-print(Solution().isSubsequence("abc","abbadc"))
+print(Solution().readBinaryWatch(6))
