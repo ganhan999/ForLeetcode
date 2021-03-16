@@ -4,7 +4,7 @@
 示例：
 输入："Let's take LeetCode contest"
 输出："s'teL ekat edoCteeL tsetnoc"
- 
+
 
 """
 

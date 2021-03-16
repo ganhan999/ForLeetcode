@@ -13,22 +13,17 @@ import itertools
 
 from collections import deque
 
-
 class Solution:
-    def readBinaryWatch(self, num: int) -> List[str]:
-        hours = [1, 2, 4, 8, 0, 0, 0, 0, 0, 0]
-        minutes = [0, 0, 0, 0, 1, 2, 4, 8, 16, 32]
-        res = []
-        def backtrack(num, index, hour, minute):
-            if hour > 11 or minute > 59:
-                return
-            if num == 0:
-                res.append('%d:%02d' % (hour, minute))
-                return
-            for i in range(index, 10):
-                backtrack(num - 1, i + 1, hour + hours[i], minute + minutes[i])
+    def toHex(self, num: int) -> str:
+        if num==0:
+            return "0"
+        hex, ans = "0123456789abcdef",  ""
+        while num and len(ans) < 8:
+            ans = hex[num & 0xf] + ans
+            num >>=  4
+            print(num >>4)
 
-        backtrack(num, 0, 0, 0)
-        return res
+        return ans
 
-print(Solution().readBinaryWatch(6))
+
+print(Solution().toHex(-2))
