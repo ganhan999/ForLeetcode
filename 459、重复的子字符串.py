@@ -40,7 +40,7 @@ class Solution:
 第一次发现s的起点是在小于lens（s）
 """
 #大神做法1
-    class Solution:
-        def repeatedSubstringPattern(self, s: str) -> bool:
-            return (s+s).find(s,1) != len(s)
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        return (s+s).find(s,1) != len(s)
 
