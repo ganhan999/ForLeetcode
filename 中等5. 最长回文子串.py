@@ -88,7 +88,6 @@ class Solution:
 
 2、如果传入相邻的索引编码，进行中心扩散，此时得到的回文子串的长度是偶数。
 
-
 """
 class Solution:
     def longestPalindrome(self, s: str) -> str:
