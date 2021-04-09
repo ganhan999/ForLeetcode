@@ -24,4 +24,4 @@ class Solution:
 
 print(Solution().findComplement(5))
 nums=[1,2,3,4,5,6]
-print(nums[::2])
+print(21//10)
