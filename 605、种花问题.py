@@ -21,7 +21,6 @@
 连续三个0则可以种一盆花
 """
 
-
 class Solution:
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
         flowerbed = [0] + flowerbed#前后都补0
