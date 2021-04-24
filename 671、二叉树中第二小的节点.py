@@ -32,7 +32,7 @@ class Solution:
             if not root:
                 return -1
 
-            if root.val > val:#如果是 222 的情况 那么就会子节点还是会返回-1
+            if root.val > val:#如果是 222 的情况 那么就会子节点还是会返回-1  val是不变的  一旦找到第一个比根节点大的就返回
                 return root.val
             left = helper(root.left, val)
             right = helper(root.right, val)
